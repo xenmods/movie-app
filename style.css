@@ -1,0 +1,404 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Inconsolata:700');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@800&display=swap');
+
+
+* {
+  box-sizing: border-box;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadein {
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-moz-keyframes fadein { /* Firefox */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity:1;
+  }
+}
+@-o-keyframes fadein { /* Opera */
+  from {
+      opacity:0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.main-container {
+  flex-wrap: wrap;
+}
+
+h1 {
+  font-family: 'Noto Sans', sans-serif;
+  color: #fff;
+  text-shadow: 3px 3px 20px #000000,
+    -2px 1px 30px #000000;
+    text-align: center;
+    position: absolute;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  height: 100vh;
+  overflow: hidden;
+  margin: 0;
+  /* background-color: #DEDBD1; */
+  /* background-image: url("poster.jpg"); */
+  background-image: url("https://media0.giphy.com/media/FyoaJE2iah7WYeyxWr/giphy.gif?cid=790b7611625012db19e82d627394dd3d3670dc12c0f1548e&rid=giphy.gif&ct=g");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  backdrop-filter: blur(5px);
+}
+
+
+
+#maintitle {
+  text-align: center;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+#details {
+  white-space: normal;
+  text-align: left;
+  /* word-wrap: break-word; */
+  word-break: break-all;
+  left: 10vw;
+  width: 100vw;
+  margin: 20px;
+  color: gray;
+  /* font-weight: bold; */
+  font-size: large;
+  font-family: monospace;
+  
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgb(0, 0, 0);
+  height: 45px;
+  opacity: 1; /* Firefox */
+  font: message-box;
+  font-family: monospace;
+}
+
+.search {
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
+  width: 50vw;
+  top: 10vw;
+  display: flex;
+  border-right: none;
+  transition: all 0.3s ease 0s;
+}
+
+.searchTerm {
+  margin-right: none;
+  margin: 10px;
+  width: 100vw;
+  border: 7px solid #ffffff;
+  border-right: none;
+  padding: 5px;
+  height: 45px;
+  border-radius: 10px;
+  outline: none;
+  color: #000000;
+  font-size: large;
+  font-family: monospace;
+  font-weight: bold;
+  transition: all 0.3s ease 0s;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.searchTerm:focus{
+  color: #000000;
+}
+
+.searchTerm:hover {
+    transform: translateY(-7px);
+  }
+
+.srch {
+
+  width: 10vw;
+  top: 10vw;
+  display: flex;
+  border-right: none;
+}
+
+.srchTerm {
+  margin-right: none;
+  /* margin: 10px; */
+  width: 40vw;
+  border: 7px solid #ffffff;
+  border-right: none;
+  padding: 5px;
+  height: 5vw;
+  border-radius: 10px;
+  outline: none;
+  color: #000000;
+  font-size: large;
+  font-family: monospace;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.srchTerm:focus{
+  color: #000000;
+}
+
+/* .searchButton {
+  margin: 10px;
+  margin-left: none;
+  border-left: none;
+  width: 20%;
+  height: 40px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+} */
+
+button {
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
+  size: 20px;
+  padding: 1.0em 2em;
+  font-size: 12px;
+  text-transform: uppercase;
+  /* letter-spacing: 2.5px; */
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 35px;
+  /* box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); */
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+button:hover {
+  background-color: #23c483;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(-7px);
+}
+
+button:active {
+  transform: translateY(-1px);
+}
+
+select {
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
+  height: 40px;
+  max-width: 50%;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+option {
+  background-color: rgb(197, 214, 214);
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
+  height: 40px;
+  max-width: 50%;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+option:hover {
+  background-color: black;
+}
+
+.detailsButton {
+  size: 15px;
+  padding: 1.0em 2em;
+  font-size: 10px;
+  text-transform: uppercase;
+  /* letter-spacing: 2.5px; */
+  font-weight: 450;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 35px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+
+
+  /* .wrap{
+    width: 10%;
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;} */
+
+.video-container.video-js {
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
+  width: 100vw;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  position: absolute;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+
+/* .video-js {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+} */
+
+  .mainplayer {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    min-width: 70vw;
+    width: 50vw;
+    /* height: 50vw; */
+    border-radius: 10px;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    transition: width 2s;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+
+  @media only screen and (max-width: 620px) {
+    /* For mobile phones: */
+    .moviebox, .mainplayer, .right {
+      width: 80%;
+    }
+  }
+  .moviebox {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    background-color: rgb(255, 255, 255);
+    width: 50vw;
+    top: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+    /* min-height: 420px;
+    min-width: 700px; */
+    /* margin: 10px; */
+    max-width: auto;
+    height: auto;
+    max-height: auto;
+    max-width: auto;
+    text-align: left;
+    border-radius: 10px;
+    word-break: break-all;
+    /* box-shadow: 5px 10px; */
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    position: absolute;
+    transition: all 0.3s ease 0s;
+  }
+
+  .moviebox:hover {
+    transform: translateY(-7px);
+  }
+
+  .video-js {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }
+  
+  /* This appears to be needed because the control bar (or its contents) will otherwise break out of the player. */
+  .video-js .vjs-control-bar {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  #loader{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #21242d url('loading.gif') no-repeat center;
+    z-index: 999;
+  }
+  
+  iframe {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    min-width: 70vw;
+    width: 50vw;
+    height: 30vw;
+    border-radius: 10px;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    transition: width 2s;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  }

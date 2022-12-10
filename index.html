@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+    <link rel="stylesheet" href="./style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Movie Stream</title>
+</head>
+<body>
+    <div id="main-container">
+        <div class="wrap">
+            <div class="search">
+            <input type="text" class="searchTerm" placeholder="Movie name...">
+            <button onclick="searchMovie()" id="playbutton" type="submit" class="searchButton">
+                <i class="fa fa-search"></i>
+            </button>
+            </div>
+        </div>
+        <div class="moviebox">
+            <p id="maintitle">Movie Details</p>
+            <p id="details">No Search Query!</p>
+        </div>
+        <select id="moviedropdown""></select>  <button onclick="showMovie()" id="showdetailsbutton" type="submit" class="detailsButton">Get details</button>
+        <div id="mainplayer" class="mainplayer">
+            <iframe id="playerframe" frameborder="0" src="" allowFullScreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+        </div>
+        <script async>
+            const maincontainer = document.getElementById('wrap')
+            const videotag = document.getElementById("video");
+            const button = document.getElementById("playvideo");
+            const main = document.getElementById("mainplayer");
+            const script = document.getElementById("playerscript");
+            const search = document.querySelector(".searchTerm");
+            const details = document.getElementById("details");
+            const moviebox = document.querySelector(".moviebox")
+            const moviesdropdown = document.getElementById("moviedropdown");
+            const detailsbutton = document.getElementById('showdetailsbutton')
+            let animeid;
+            const searchAPI ='https://api.themoviedb.org/3/search/movie?api_key=8ebb221307122fc80aef95000840580b&query='
+            const ImagePath = 'https://image.tmdb.org/t/p/w1280'
+            document.addEventListener('DOMContentLoaded', hidebuttons)
+            search.addEventListener('keydown', (e) => {
+                if (e.code === 'Enter') {
+                    e.preventDefault()
+                    searchMovie()
+                }
+            })
+            function hidebuttons() {
+                main.style.display = "none"
+                moviesdropdown.style.display = "none"
+                detailsbutton.style.display = "none"
+            }
+
+            // moviebox.style.display = "none"
+            async function searchMovie() {
+                words = search.value
+                const url = searchAPI + words
+                const res = await fetch(url);
+                const data = await res.json();
+                moviedata = data.results
+                await showResults(moviedata)
+                main.style.display = "none"
+                moviesdropdown.style.display = ""
+                detailsbutton.style.display = ""
+                search.value = ''
+                // moviebox.style.display = ""
+            }
+
+            function removeOptions(selectElement) {
+                var i, L = selectElement.options.length - 1;
+                for(i = L; i >= 0; i--) {
+                    selectElement.remove(i);
+                }
+                }
+
+            async function showResults(data) {
+                moviebox.style.display = ""
+                removeOptions(moviesdropdown);
+                for (var i = 0; i < data.length; i++) {
+                    let option = document.createElement("option");
+                    option.setAttribute('value', data[i].id);
+
+                    let optionText = document.createTextNode(data[i].title);
+                    option.appendChild(optionText);
+
+                    moviesdropdown.appendChild(option);
+                    }
+            }
+            async function showMovie() {
+                moviebox.style.display = ""
+                main.style.display = "none"
+                const movieid = document.getElementById("moviedropdown").value;
+                const newurl = `https://api.themoviedb.org/3/movie/${movieid}?api_key=8ebb221307122fc80aef95000840580b&language=en-US`
+                const resp = await fetch(newurl);
+                const data = await resp.json();
+                var genres = [];
+                console.log(data.genres)
+                for (let i = 0; i < data.genres.length; i++) {
+                    genres.push(data.genres[i].name)
+                    console.log(data.genres[i].name)
+                }
+                genres = genres.join(", ")
+                details.innerHTML = `
+                <p>
+                <b>Title: </b>${data.title}</br>
+                <b>Date: </b>${data.release_date}</br> 
+                <b>Genres: </b>${genres}</br>
+                <b>Rating: </b>${data.vote_average}</br>
+                <b>Popularity: </b>${data.popularity}</br>
+                <b>Status: </b>${data.status}</br>
+                <h4 id="progtext">Click on the play button to start playing!</h4>
+                <h4 id="progtext">NOTE: THERE WILL BE ADS FROM THE PLAYER!</h4>
+                </br></br>
+                <button onclick="mainPlay('${data.imdb_id}', '${ImagePath + data.backdrop_path.replace('%7D', '')}')" id="infobutton" type="submit" class="searchButton">Play</button>
+                `
+                
+            }
+
+            async function mainPlay(id, image) {
+                await playVideo(`https://vidsrc.me/embed/${id}/`)
+                document.body.style.background = `url("${image}")`
+                main.style.display = ""
+                moviebox.style.display = "none"
+            }
+
+            async function playVideo(url) {
+                frame = document.getElementById('playerframe')
+                frame.src = url
+                };      
+        </script>
+    </div>
+</body>
+</html>
